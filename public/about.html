@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+    <div class="header-bg"></div>
+    <div class="header-content">
+        <nav>
+            <a href="index.html" class="logo">Ayesha Amjad Ali</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <!-- <a href="#testimonials.html">Testimonials</a> -->
+                <a href="contact.html">Contact</a>
+            </div>
+
+            </nav>
+           
+
+        </header>
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="section-intro">
+                <p>I am a youthful and ardent cybersecurity professional possessing expertise in
+                 Python programming and web development. 
+                 I am eager to leverage my skills to contribute 
+                 meaningfully to global advancement.</p>
+            </div>
+    
+            <div class="skills">
+                <div class="skill-card">
+                    <div class="skill-icon">🔍</div>
+                    <h3 class="skill-title">My Approach</h3>
+                    <p>I create apps with security as a foundation from the start.
+                     My skills help me spot and fix potential risks at every step of the process.</p>
+                </div>
+    
+                <div class="skill-card">
+                    <div class="skill-icon">🎯</div>
+                    <h3 class="skill-title">My Focus</h3>
+                    <p>I build secure, easy-to-use, and efficient Python apps. 
+                    I also perform security checks and set up strong protection plans for businesses of all sizes.</p>
+                </div>
+    
+                <div class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <h3 class="skill-title">My Mission</h3>
+                    <p>I use my development and security skills to help companies create and manage solid, safe systems. 
+                    These systems protect important data and provide great user experiences.</p>
+                </div>
+            </div>
+        </section>
+       
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/Ayesha00-9" class="social-icon" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="videoModal" style="display:none; position:fixed; top:5%; left:5%; width:90%; height:90%; background:rgba(0,0,0,0.9); z-index:1000; border-radius:10px; overflow:hidden;">
+        <video id="videoPlayer" width="100%" height="100%" controls></video>
+        <button onclick="closeVideo()" style="position:absolute; top:10px; right:10px; background:red; color:white; padding:5px 10px; border:none; cursor:pointer;">Close</button>
+      </div>
+  
+      <script>
+        function openVideo(url) {
+          const player = document.getElementById('videoPlayer');
+          player.src = url;
+          document.getElementById('videoModal').style.display = 'block';
+        }
+        function closeVideo() {
+          const player = document.getElementById('videoPlayer');
+          player.pause();
+          player.src = '';
+          document.getElementById('videoModal').style.display = 'none';
+        }
+      </script>
+  
+  <script src="/api/contact.js"></script>
+      
+</body>
+</html>

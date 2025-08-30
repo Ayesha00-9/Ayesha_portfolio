@@ -1,0 +1,25 @@
+{
+  "name": "ayesha_portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "ayesha amjad ali",
+  "license": "ISC",
+  "description": "my first app",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "nodemailer": "^6.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayesha00-9/Ayesha_portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ayesha00-9/Ayesha_portfolio/issues"
+  },
+  "homepage": "https://github.com/Ayesha00-9/Ayesha_portfolio#readme"
+}
