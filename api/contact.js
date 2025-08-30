@@ -1,32 +1,114 @@
 
-document.getElementById('contact-form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+// document.getElementById('contact-form').addEventListener('submit', async function (event) {
+//     event.preventDefault(); // Prevent the default form submission
 
-    const formData = new FormData(this); // Collect form data
-    const formObject = Object.fromEntries(formData.entries()); // Convert form data to an object
+//     const formData = new FormData(this); // Collect form data
+//     const formObject = Object.fromEntries(formData.entries()); // Convert form data to an object
+
+//     try {
+//         const response = await fetch('/api/contact', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded', // Sending form data in URL encoded format
+//             },
+//             body: new URLSearchParams(formObject), // Send form data in URLSearchParams format
+//         });
+
+//         const result = await response.json(); // Parse JSON response
+        
+//         if (response.ok) {
+//             // Success: Display success message on the page and reset form
+//             document.getElementById('form-feedback').innerHTML = `<p>Message sent successfully!</p>`;
+//             document.getElementById('contact-form').reset(); // Reset the form fields
+//         } else {
+//             // Failure: Display error message on the page
+//             document.getElementById('form-feedback').innerHTML = `<p>Error: ${result.message || 'Failed to send message'}</p>`;
+//         }
+//     } catch (error) {
+//         console.error('Error:', error); // Log errors
+//         // Display generic error message on the page
+//         document.getElementById('form-feedback').innerHTML = `<p>There was an issue sending your message. Please try again later.</p>`;
+//     }
+// });
+
+
+
+// document.getElementById('contact-form').addEventListener('submit', async function (event) {
+//     event.preventDefault(); // Prevent the default form submission
+
+//     const form = this;
+//     const feedback = document.getElementById('form-feedback');
+//     const submitButton = form.querySelector('button[type="submit"]');
+
+//     // Show loading state
+//     feedback.innerHTML = '<p>Sending message...</p>';
+//     submitButton.disabled = true;
+
+//     const formData = new FormData(form);
+//     const formObject = Object.fromEntries(formData.entries());
+
+//     try {
+//         const response = await fetch('http://localhost:3000/api/contact', { // Use full URL for testing
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//             },
+//             body: new URLSearchParams(formObject),
+//         });
+
+//         const result = await response.json();
+
+//         if (response.ok) {
+//             feedback.innerHTML = '<p>Message sent successfully! I\'ll get back to you soon.</p>';
+//             form.reset();
+//         } else {
+//             feedback.innerHTML = `<p>Error: ${result.message || 'Failed to send message'}</p>`;
+//         }
+//     } catch (error) {
+//         console.error('Error:', error);
+//         feedback.innerHTML = '<p>There was an issue sending your message. Please try again later.</p>';
+//     } finally {
+//         submitButton.disabled = false;
+//     }
+// });
+
+document.getElementById('contact-form').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const form = this;
+    const feedback = document.getElementById('form-feedback');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    // Show loading state
+    feedback.innerHTML = '<p>Sending message...</p>';
+    submitButton.disabled = true;
+
+    const formData = new FormData(form);
+    const formObject = Object.fromEntries(formData.entries());
+    console.log('Form data sent:', formObject); // Debug log
 
     try {
-        const response = await fetch('/api/contact', {
+        const response = await fetch('http://localhost:3000/api/contact', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded', // Sending form data in URL encoded format
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: new URLSearchParams(formObject), // Send form data in URLSearchParams format
+            body: new URLSearchParams(formObject),
         });
 
-        const result = await response.json(); // Parse JSON response
-        
+        const result = await response.json();
+        console.log('Server response:', result); // Debug log
+
         if (response.ok) {
-            // Success: Display success message on the page and reset form
-            document.getElementById('form-feedback').innerHTML = `<p>Message sent successfully!</p>`;
-            document.getElementById('contact-form').reset(); // Reset the form fields
+            feedback.innerHTML = '<p>Message sent successfully! I\'ll get back to you soon.</p>';
+            form.reset();
         } else {
-            // Failure: Display error message on the page
-            document.getElementById('form-feedback').innerHTML = `<p>Error: ${result.message || 'Failed to send message'}</p>`;
+            feedback.innerHTML = `<p>Error: ${result.error || 'Failed to send message'}</p>`;
         }
     } catch (error) {
-        console.error('Error:', error); // Log errors
-        // Display generic error message on the page
-        document.getElementById('form-feedback').innerHTML = `<p>There was an issue sending your message. Please try again later.</p>`;
+        console.error('Fetch error:', error);
+        feedback.innerHTML = '<p>There was an issue sending your message. Please try again later or check the console.</p>';
+    } finally {
+        submitButton.disabled = false;
     }
 });
